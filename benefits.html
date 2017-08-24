@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Benefits</title>
+    <script src="handlebars-v4.0.10.js" src="benefits.json"></script>
+</head>
+<style>
+    h3{
+        color: black;
+        font-size:20pt;
+        font-style: italic;
+        font-family: "Arial Black";
+    }
+    ul{
+        font-size:10pt;
+        font-style: italic;
+        font-family: "Arial Black";
+    }
+</style>
+<body>
+<div id="demo"></div>
+<div  id="om"></div>
+<script id="quote-template" type="text/x-handlebars-template">
+    <h3>Benefits:</h3>
+    <ul>
+        {{#each benefits}}
+        <br>
+        <li>Company {{@index}} name:{{name}}
+        <li>Company {{@index}} address:{{address}}
+        <li>Company {{@index}} details:{{details}}
+        <li>Company {{@index}} zone:{{zone}}
+        <li>Company {{@index}} industry:{{industry}}
+        <li>Company {{@index}} phone number 1:{{phonenumber1}}
+        <li>Company {{@index}} phone number 2:{{phonenumber2}}
+        <li>Company {{@index}} phone number 3:{{phonenumber3}}<br>
+        {{/each}}
+    </ul>
+</script>
+<script type="text/javascript">
+    //var quoteinfo=document.getElementById("quote-template").innerHTML;
+    //var template=Handlebars.compile(quoteinfo);
+    //document.getElementById("om").innerHTML+=quotedata;
+    var xmlhttp = new XMLHttpRequest();
+    xmlhttp.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+            var myArr = JSON.parse(this.responseText);
+            var quoteinfo=document.getElementById("quote-template").innerHTML;
+            var template=Handlebars.compile(quoteinfo);
+            var quotedata=template({benefits:myArr})
+            document.getElementById("demo").innerHTML +=quotedata;
+        }
+    };
+    xmlhttp.open("GET", "benefits.json", true);
+    xmlhttp.send();
+</script>
+</body>
+</html>
+</body>
+</html>

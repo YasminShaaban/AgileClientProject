@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script src="handlebars-v4.0.10.js"></script>
+</head>
+<body>
+<div  id="om"></div>
+<script id="quote-template" type="text/x-handlebars-template">
+    <h3>Favorite {{name}} Quotes</h3>
+    <ol>
+        {{#each quotes}}
+            <li>{{quote}}</li>
+        {{/each}}
+    </ol>
+</script>
+<script type="text/javascript">
+    var quoteinfo=document.getElementById("quote-template").innerHTML;
+    var template=Handlebars.compile(quoteinfo);
+    var quotedata=template({name:"OM",quotes:[{quote:"good quote"},{quote:"bad quote"}]});
+    document.getElementById("om").innerHTML+=quotedata;
+</script>
+
+</body>
+</html>
